@@ -43,10 +43,18 @@ jobs:
           cd React-App/preProject 
            npm ci
           
-      - name: Build
+      # - name: Build
+      #   run: |
+      #     cd React-App/preProject
+      #      npm run build
+
+      - name: Deploy preProject
         run: |
           cd React-App/preProject
-           npm run build
+          npm ci
+          npm run build
+          mkdir -p ../../dist/React-App/preProject
+          cp -r dist/* ../../dist/React-App/preProject
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -55,6 +63,12 @@ jobs:
         with:
           # Upload dist folder
            path: './React-App/preProject/dist'
+
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+             path: './dist'   
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

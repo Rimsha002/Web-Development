@@ -8,6 +8,6 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react()],
-    base: '/Web-Development/React-App/',
+    base: '/Web-Development/React-App/preProject/',
 })
 
